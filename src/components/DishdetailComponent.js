@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardImg, CardText, CardBody,
     CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import CommentElemnt from './CommentFormComponent';
 
 
 function RenderComments({comment}) {
@@ -11,17 +12,16 @@ function RenderComments({comment}) {
                 <div key={cmt.id}>
                 <div className="col-12 col-md-12">{cmt.comment}</div>
                 <br />
-                <div className="col-12 col-md-12">-- {cmt.author}</div>
-                <br />
-                <div className="col-12 col-md-12">-- {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(cmt.date)))}</div>
+                <div className="col-12 col-md-12">-- {cmt.author} , {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(cmt.date)))}</div>
                 <br />
                 </div>
                 );
          });
          return(
                <div>
-                <h2>comments</h2>
+                <h2>Comments</h2>
                   {commentElemnt}
+                  <CommentElemnt/>
                </div>
           );
         }
