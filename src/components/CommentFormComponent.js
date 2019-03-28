@@ -20,14 +20,16 @@ toggleModal(){
       });
     }
 handleSubmit(values) {
+    this.toggleModal();
     console.log('Current State is: ' + JSON.stringify(values));
     alert('Current State is: ' + JSON.stringify(values));
     // event.preventDefault();
+    this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
     }
 render(){
     return(
         <div>
-            <Button outline onClick={this.toggleModal}><span className="fa fa-edite-in fa-lg"></span> Submit Comment</Button>
+            <Button outline onClick={this.toggleModal}><span className="fa fa-edit fa-lg"></span> Submit Comment</Button>
             <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal} >
                 <ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
                 <ModalBody>
@@ -35,7 +37,7 @@ render(){
                     <Row className="form-group">
                         <Label htmlFor="Rating" md={3}>Rating</Label>
                         <Col md={12}>
-                            <Control.select model="Rating" id="Rating"
+                            <Control.select model=".rating" id="Rating"
                             className="form-control"
                             >
                                 <option value="1">1</option>
@@ -49,7 +51,7 @@ render(){
                     <Row className="form-group">
                         <Label htmlFor="YourName" md={3}>Your Name</Label>
                         <Col md={12}>
-                            <Control.text model="YourName" id="YourName"
+                            <Control.text model=".author" id="YourName"
                             className="form-control"
                             placeholder="Your Name"
                             validators={{
@@ -72,7 +74,7 @@ render(){
                     <Row className="form-group">
                         <Label htmlFor="Comment" md={3}>Comment</Label>
                         <Col md={12}>
-                            <Control.textarea model="Comment" id="Comment"
+                            <Control.textarea model=".comment" id="Comment"
                             className="form-control" rows="7"
                             >
                             </Control.textarea>
