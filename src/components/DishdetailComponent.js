@@ -4,9 +4,9 @@ import { Card, CardImg, CardText, CardBody,
 import { Link } from 'react-router-dom';
 import CommentElemnt from './CommentFormComponent';
 import { Loading } from './LoadingComponent';
+import { baseUrl } from '../components/shared/baseUrl';
 
-
-function RenderComments({comment, addComment, dishId}) {
+function RenderComments({comment, postComment, dishId}) {
         if (comment != null){
             const commentElemnt = comment.map((cmt) => {
                 return (
@@ -22,7 +22,7 @@ function RenderComments({comment, addComment, dishId}) {
                <div>
                 <h2>Comments</h2>
                   {commentElemnt}
-                  <CommentElemnt dishId={dishId} addComment={addComment}/>
+                  <CommentElemnt dishId={dishId} postComment={postComment}/>
                </div>
           );
         }
@@ -36,7 +36,7 @@ function RenderDish({dish}){
         if (dish != null)
             return(
                 <Card>
-                    <CardImg top src={dish.image} alt={dish.name} />
+                    <CardImg top src={baseUrl + dish.image} alt={dish.name} />
                     <CardBody>
                       <CardTitle>{dish.name}</CardTitle>
                       <CardText>{dish.description}</CardText>
@@ -83,7 +83,7 @@ const  DishDetail = (props) => {
                 </div>
                 <div  className="col-12 col-md-5 m-1">
                     <RenderComments comment={props.comments}
-                    addComment={props.addComment}
+                    postComment={props.postComment}
                     dishId={props.dish.id}
                      />
                 </div>
